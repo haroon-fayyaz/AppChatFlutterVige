@@ -3,11 +3,11 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vibetag/Chat_List.dart';
+import 'package:vibetag/FriendList.dart';
 import 'package:vibetag/Login.dart';
+import 'package:vibetag/UserProfile.dart';
 
-void main() {
-  runApp(Register());
-}
+import 'Follow_Screen.dart';
 
 class Register extends StatelessWidget {
   @override
@@ -19,9 +19,14 @@ class Register extends StatelessWidget {
   }
 }
 
+MediaQueryData queryData;
+
 class Signup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    queryData = MediaQuery.of(context);
+    var widthD = queryData.size.width;
+    var heightD = queryData.size.height;
     // TODO: implement build
     return Scaffold(
         body: Column(
@@ -82,7 +87,9 @@ class Signup extends StatelessWidget {
           ),
           textAlign: TextAlign.left,
         ),
-        SelectGender(),
+        Container(
+          child: SelectGender(),
+        ),
         Row(
           children: <Widget>[
             CheckBoxClass(),
@@ -93,9 +100,10 @@ class Signup extends StatelessWidget {
                 fontSize: 10,
                 color: const Color(0xff6b6b6b),
               ),
-              textAlign: TextAlign.left,
+              textAlign: TextAlign.center,
             ),
           ],
+          mainAxisAlignment: MainAxisAlignment.center,
         ),
         RaisedButton(
           onPressed: () {
@@ -126,35 +134,6 @@ class Signup extends StatelessWidget {
             ),
           ),
         ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Do not have an account ? ',
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 14,
-                color: const Color(0xff6e6e6e),
-              ),
-              textAlign: TextAlign.left,
-            ),
-            FlatButton(
-              child: Text(
-                'Register',
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontSize: 14,
-                  color: const Color(0xff4585fe),
-                ),
-                textAlign: TextAlign.left,
-              ),
-              onPressed: () {
-                //TODO: Register label Pressed
-              },
-            ),
-          ],
-        )
       ],
     ));
 //        ],
@@ -165,7 +144,7 @@ class Signup extends StatelessWidget {
 
   void _openLoginScreen(BuildContext context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => new ChatList()));
+        .push(MaterialPageRoute(builder: (context) => new User_Profile()));
   }
 }
 
@@ -221,8 +200,9 @@ class _SelectGender extends State<StatefulWidget> {
       trailing: DropdownButton<String>(
         value: _selectedGender,
         hint: Container(
-            width: 330,
-            child: Text("Select Gender", textAlign: TextAlign.left)),
+          width: queryData.size.width - 80,
+          child: Text("Select Gender", textAlign: TextAlign.left),
+        ),
         onChanged: (String newValue) {
           setState(() {
             _selectedGender = newValue;

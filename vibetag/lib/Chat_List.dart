@@ -93,6 +93,7 @@ class _ChatListPageState extends State<ChatListPage> {
         children: <Widget>[
           Container(
             child: Row(
+
               children: <Widget>[
                 Icon(
                   Icons.search,
@@ -124,6 +125,7 @@ class _ChatListPageState extends State<ChatListPage> {
                 ),
               ],
             ),
+            padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
             margin: EdgeInsets.all(25),
             alignment: Alignment.center,
             height: 45,
