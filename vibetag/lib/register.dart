@@ -3,11 +3,14 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vibetag/Chat_List.dart';
+import 'package:vibetag/Chat_Screen.dart';
 import 'package:vibetag/FriendList.dart';
+import 'package:vibetag/HomeScreen.dart';
 import 'package:vibetag/Login.dart';
 import 'package:vibetag/UserProfile.dart';
 
 import 'Follow_Screen.dart';
+import 'SetupProfile.dart';
 
 class Register extends StatelessWidget {
   @override
@@ -144,7 +147,7 @@ class Signup extends StatelessWidget {
 
   void _openLoginScreen(BuildContext context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => new User_Profile()));
+        .push(MaterialPageRoute(builder: (context) => new SetupProfileState()));
   }
 }
 

@@ -107,6 +107,7 @@ class _ChatListPageState extends State<ChatListPage> {
                   child: Container(
                     alignment: Alignment.center,
                     child: TextField(
+                      maxLines: null,
                       style: TextStyle(
                         fontFamily: 'Helvetica Neue',
                         fontSize: 18,

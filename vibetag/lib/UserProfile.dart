@@ -92,6 +92,7 @@ class _UserProfileState extends State<UserProfile> {
                       height: 7,
                     ),
                     _buildFullName(),
+                    popUpMenuButton(),
                     Container(
                       width: widthD,
                       color: Colors.white,
@@ -353,6 +354,71 @@ class _UserProfileState extends State<UserProfile> {
     return Text(
       fullName,
       style: _nameTextStyle,
+    );
+  }
+
+  Widget popUpMenuButton() {
+    return PopupMenuButton<String>(
+      icon: Icon(
+        Icons.list,
+        size: 30.0,
+      ),
+      itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+        PopupMenuItem<String>(
+            value: "bb",
+            child: FlatButton.icon(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.list,
+                  color: Color(0xFF616161),
+                ),
+                label: Text("Activities"))),
+        PopupMenuItem<String>(
+            value: "bb",
+            child: FlatButton.icon(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.edit,
+                  color: Color(0xFF616161),
+                ),
+                label: Text("Edit Profile"))),
+        PopupMenuItem<String>(
+            value: "bb",
+            child: FlatButton.icon(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.group,
+                  color: Color(0xFF616161),
+                ),
+                label: Text("Groups"))),
+        PopupMenuItem<String>(
+            value: "bb",
+            child: FlatButton.icon(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.thumb_up,
+                  color: Color(0xFF616161),
+                ),
+                label: Text("Likes"))),
+        PopupMenuItem<String>(
+            value: "bb",
+            child: FlatButton.icon(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.photo_library,
+                  color: Color(0xFF616161),
+                ),
+                label: Text("Photos"))),
+        PopupMenuItem<String>(
+            value: "bb",
+            child: FlatButton.icon(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.videocam,
+                  color: Color(0xFF616161),
+                ),
+                label: Text("Videos"))),
+      ],
     );
   }
 
