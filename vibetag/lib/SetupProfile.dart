@@ -29,29 +29,11 @@ class SetupProfile extends State<SetupProfileState> {
   String _selectedGender; // String selected for
   bool _checkBoxVal = true;
   final _dateController = TextEditingController();
-  Future<Null> _selectDate(BuildContext context) async {
-    DateTime _datePicker = await showDatePicker(
-      context: context,
-      initialDate: _date,
-      firstDate: DateTime(1990),
-      lastDate: DateTime(2030),
-    );
-
-    if (_datePicker != null && _datePicker != _date) {
-      setState(() {
-        //_datePicker.toString();
-        String day=_datePicker.day.toString();
-        String month=_datePicker.month.toString();
-        String year=_datePicker.year.toString();
-        _dateController.text="$day-$month-$year";
-        print(_datePicker.toString());
-        _date = _datePicker;
-      });
-    }
-  }
+  final _genderController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    _genderController.text = 'Please Select a Gender';
     return new Scaffold(
       resizeToAvoidBottomPadding: false,
       body: SingleChildScrollView(
@@ -170,9 +152,14 @@ class SetupProfile extends State<SetupProfileState> {
               //Used to show DropDown Menu for selection of Gender
               offset: Offset(100.0, 323.0),
               child: DropdownButton(
-                hint: Text('Please Select a Gender'),
+                hint: Container(
+                    width: 180,
+                    child: TextField(
+                      controller: _genderController,
+                    )),
                 value: _selectedGender,
                 onChanged: (newValue) {
+                  _genderController.text = newValue;
                   setState(() {
                     _selectedGender = newValue;
                   });
@@ -280,10 +267,16 @@ class SetupProfile extends State<SetupProfileState> {
                       readOnly: true,
                       autovalidate: true,
                       onTap: () {
-                        setState(() {
-                          _selectDate(context);
-                          print(_date);
-
+                        showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2018),
+                          lastDate: DateTime(2025),
+                        ).then((value) {
+                          String day = value.day.toString();
+                          String month = value.month.toString();
+                          String year = value.year.toString();
+                          _dateController.text = "$day-$month-$year";
                         });
                       },
                       decoration: InputDecoration(
