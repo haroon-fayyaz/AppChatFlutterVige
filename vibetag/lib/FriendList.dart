@@ -52,12 +52,13 @@ class _FriendListState extends State<FriendList> {
             ),
             GestureDetector(
               child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3.0),
-                    border: Border.all(color: Colors.grey[300])),
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(3.0),
-                    child: Image.asset('images/man_pic.jpg')),
+                child: ClipOval(
+                    child: Image.asset(
+                  'images/man_2.jpg',
+                  width: 40.0,
+                  height: 40.0,
+                  fit: BoxFit.cover,
+                )),
               ),
             ),
             Container(
@@ -67,7 +68,7 @@ class _FriendListState extends State<FriendList> {
                 style: TextStyle(
                   fontFamily: 'Helvetica Neue',
                   fontSize: 14,
-                  color: const Color(0xff707070),
+                  color: Colors.black,
                   fontWeight: FontWeight.w700,
                 ),
                 textAlign: TextAlign.left,
@@ -166,7 +167,8 @@ class _FriendListState extends State<FriendList> {
                             ),
                             textAlign: TextAlign.start,
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+                              contentPadding:
+                                  EdgeInsets.symmetric(vertical: 10.0),
                               border: InputBorder.none,
                               hintText: 'Search',
                               hintStyle: TextStyle(
@@ -210,10 +212,14 @@ class _FriendListState extends State<FriendList> {
                   child: Row(
                     children: <Widget>[
                       Expanded(
-                        child: ShowList(),
+                        child: ShowList(
+                          idx: 0,
+                        ),
                       ),
                       Expanded(
-                        child: ShowList(),
+                        child: ShowList(
+                          idx: 1,
+                        ),
                       ),
                     ],
                   ),
@@ -242,16 +248,30 @@ class _FriendListState extends State<FriendList> {
 }
 
 class ShowList extends StatefulWidget {
+  final int idx;
+
+  ShowList({Key key, this.idx}) : super(key: key);
+
   @override
-  State<StatefulWidget> createState() => _ShowList();
+  State<StatefulWidget> createState() => _ShowList(idx: idx);
 }
 
 class _ShowList extends State<StatefulWidget> {
-  static List<String> Names = [
-    'Professor',
-    'Nairobi',
-    'Tokyo',
-    'Berlin',
+  final int idx;
+
+  _ShowList({this.idx});
+
+  static List<String> imagePaths = [
+    'images/person.jpg',
+    'images/person_2.jpg',
+    'images/person_3.jpg',
+    'images/person_4.jpg',
+  ];
+  static List<String> imagePaths2 = [
+    'images/man_2.jpg',
+    'images/person_5.jpg',
+    'images/person_6.jpg',
+    'images/person_7.jpg',
   ];
 
   @override
@@ -262,9 +282,11 @@ class _ShowList extends State<StatefulWidget> {
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        itemCount: Names.length,
+        itemCount: this.idx == 0 ? imagePaths.length : imagePaths2.length,
         itemBuilder: (context, index) {
-          var title = Names.elementAt(index);
+          var path = this.idx == 0
+              ? imagePaths.elementAt(index)
+              : imagePaths2.elementAt(index);
           return Card(
             child: ListTile(
               title: GestureDetector(
@@ -274,7 +296,7 @@ class _ShowList extends State<StatefulWidget> {
                     height: 100,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: const AssetImage('images/photoFollow.jpg'),
+                        image: AssetImage(path),
                         fit: BoxFit.fill,
                       ),
                       boxShadow: [

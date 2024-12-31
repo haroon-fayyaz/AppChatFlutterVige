@@ -68,9 +68,6 @@ class _ChatListPageState extends State<ChatListPage> {
             ),
             GestureDetector(
               child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3.0),
-                    border: Border.all(color: Colors.grey[300])),
                 child: ClipOval(
                     child: Image.asset(
                   'images/person_2.jpg',
