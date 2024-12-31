@@ -1,5 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:vibetag/Chat_Screen.dart';
+import 'package:vibetag/Follow_Screen.dart';
+import 'package:vibetag/FriendList.dart';
+import 'package:vibetag/HomeScreen.dart';
+import 'package:vibetag/SetupProfile.dart';
+import 'package:vibetag/UserProfile.dart';
 import 'package:vibetag/register.dart';
 
 import 'Chat_List.dart';
@@ -29,37 +35,22 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      resizeToAvoidBottomPadding: false,
-      body: Stack(
-        children: <Widget>[
-          Container(
-            width: 375.0,
-            height: 812.0,
-            decoration: BoxDecoration(
-              color: const Color(0xffffffff),
-            ),
-          ),
-          Container(
-            width: 375.0,
-            height: 812.0,
-            decoration: BoxDecoration(
-              color: const Color(0xffffffff),
-            ),
-          ),
-          Container(
-            width: 375.0,
-            height: 812.0,
-            decoration: BoxDecoration(
-              color: const Color(0xffffffff),
-            ),
-          ),
-          Transform.translate(
-              //Used to display Vibetag Logo
-              offset: Offset(79.0, 113.0),
-              child: Column(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  color: const Color(0xffffffff),
+                ),
+              ),
+              SizedBox(height: 130.0),
+              Column(
                 children: <Widget>[
                   Container(
                     width: 218.0,
@@ -72,106 +63,122 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 ],
-              )),
-          Transform.translate(
-            //Used to display Login Logo
-            offset: Offset(49.0, 256.0),
-            child: GestureDetector(
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    'Login', //Login logo
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 24,
-                      color: const Color(0xff707070),
-                      fontWeight: FontWeight.w700,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ],
               ),
-              onTap: () {
-                print("yes");
-                _openChatScreen(context);
-              },
-            ),
-          ),
-          Transform.translate(
-              //Used to display textbox and hint for email/username
-              offset: Offset(15, 330),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                      child: TextFormField(
-                    textCapitalization: TextCapitalization.words,
-                    decoration: InputDecoration(
-                      border: UnderlineInputBorder(),
-                      filled: false,
-                      icon: Icon(Icons.email),
-                      hintText: 'Username/Email',
-                    ),
-                    textAlign: TextAlign.left,
-                  ))
-                ],
-              )),
-          Transform.translate(
-              //Used to display textbox and hint for Password
-              offset: Offset(15, 420),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                      child: TextFormField(
-                    textCapitalization: TextCapitalization.words,
-                    decoration: InputDecoration(
-                      border: UnderlineInputBorder(),
-                      filled: false,
-                      icon: Icon(Icons.lock),
-                      hintText: 'Password',
-                    ),
-                    textAlign: TextAlign.left,
-                  ))
-                ],
-              )),
-          Transform.translate(
-            //Used to display Login Button
-            offset: Offset(90.0, 510.0),
-            child: Column(
-              children: <Widget>[
-                RaisedButton(
-                  onPressed: () {},
-                  textColor: Colors.white,
-                  padding: const EdgeInsets.all(0.0),
-                  child: Container(
-                    width: 235,
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: <Color>[
-                          const Color(0xfffe7e45),
-                          const Color(0xffffb100)
-                        ],
-                      ),
-                    ),
-                    padding: const EdgeInsets.all(10.0),
-                    child: const Text(
+              SizedBox(height: 50.0),
+              GestureDetector(
+                child: Column(
+                  children: <Widget>[
+                    Text(
                       'Login',
                       style: TextStyle(
                         fontFamily: 'Roboto',
-                        fontSize: 14,
-                        color: const Color(0xffffffff),
+                        fontSize: 24,
+                        color: const Color(0xff707070),
                         fontWeight: FontWeight.w700,
                       ),
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
+                ),
+                onTap: () {
+                  print("yes");
+                  _openChatScreen(context);
+                },
+              ),
+              SizedBox(height: 40.0),
+              Column(
+                children: <Widget>[
+                  Container(
+                    child: TextFormField(
+                      textCapitalization: TextCapitalization.words,
+                      decoration: InputDecoration(
+                        border: UnderlineInputBorder(),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xfffe7e45)),
+                        ),
+                        filled: false,
+                        icon: Icon(
+                          Icons.email,
+                          color: Color(0xfffe7e45),
+                        ),
+                        hintText: 'Username/Email',
+                      ),
+                      textAlign: TextAlign.left,
                     ),
                   ),
-                )
-              ],
-            ),
-          ),
-          Transform.translate(
-              //Used to display "Do not have an Account?" label
-              offset: Offset(85.0, 600.0),
-              child: Column(
+                ],
+              ),
+              SizedBox(height: 30.0),
+              Column(
+                children: <Widget>[
+                  StatefulBuilder(
+                    builder: (BuildContext context, StateSetter setState) {
+                      return TextFormField(
+                        obscureText: _obscureText,
+                        decoration: InputDecoration(
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xfffe7e45)),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xfffe7e45)),
+                          ),
+                          filled: false,
+                          icon: Icon(Icons.lock, color: Color(0xfffe7e45)),
+                          hintText: 'Password',
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Color(0xfffe7e45),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                          ),
+                        ),
+                        textAlign: TextAlign.left,
+                      );
+                    },
+                  ),
+                ],
+              ),
+              SizedBox(height: 30.0),
+              Column(
+                children: <Widget>[
+                  RaisedButton(
+                    onPressed: () {},
+                    textColor: Colors.white,
+                    padding: const EdgeInsets.all(0.0),
+                    child: Container(
+                      width: 235,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: <Color>[
+                            const Color(0xfffe7e45),
+                            const Color(0xffffb100)
+                          ],
+                        ),
+                      ),
+                      padding: const EdgeInsets.all(10.0),
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontSize: 14,
+                          color: const Color(0xffffffff),
+                          fontWeight: FontWeight.w700,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 30.0),
+              Column(
                 children: <Widget>[
                   Container(
                     child: Text(
@@ -183,13 +190,11 @@ class _LoginState extends State<Login> {
                       ),
                       textAlign: TextAlign.left,
                     ),
-                  )
+                  ),
                 ],
-              )),
-          Transform.translate(
-              //Used to display "Register" label when pressed
-              offset: Offset(250.0, 586.0),
-              child: Column(
+              ),
+              SizedBox(height: 5.0),
+              Column(
                 children: <Widget>[
                   Container(
                     child: FlatButton(
@@ -198,19 +203,20 @@ class _LoginState extends State<Login> {
                         style: TextStyle(
                           fontFamily: 'Roboto',
                           fontSize: 16,
-                          color: const Color(0xff4585fe),
+                          color: const Color(0xfffe7e45),
                         ),
                         textAlign: TextAlign.left,
                       ),
                       onPressed: () {
                         _openSignUpPage(context);
-                        // When Register label Pressed
                       },
                     ),
-                  )
+                  ),
                 ],
-              ))
-        ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -218,7 +224,9 @@ class _LoginState extends State<Login> {
   void _openChatScreen(BuildContext context) {
     print('Hello');
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => new ChatList()));
+        .push(MaterialPageRoute(builder: (context) => new FollowScreen()));
+    // Navigator.of(context)
+    //     .push(MaterialPageRoute(builder: (context) => new ChatScreen()));
   }
 
   void _openSignUpPage(BuildContext context) {

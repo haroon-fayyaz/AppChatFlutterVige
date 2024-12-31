@@ -36,6 +36,7 @@ flutter:
     - images/man_pic.jpg
     - images/logo.jpg
     - images/photoFollow.jpg
+    - images/
   fonts:
     - family: Helvetica Neue
       fonts:

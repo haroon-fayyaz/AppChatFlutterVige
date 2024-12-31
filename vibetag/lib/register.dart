@@ -41,6 +41,7 @@ class Signup extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Image.asset('images/logo.jpg'),
         ),
+        SizedBox(height: 30.0),
         Text(
           'Signup',
           textAlign: TextAlign.left,
@@ -51,44 +52,68 @@ class Signup extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
         ),
-        TextFormField(
-          textCapitalization: TextCapitalization.words,
-          decoration: InputDecoration(
-            border: UnderlineInputBorder(),
-            filled: false,
-            icon: Icon(Icons.person),
-            hintText: 'Username',
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextFormField(
+            textCapitalization: TextCapitalization.words,
+            decoration: InputDecoration(
+              border: UnderlineInputBorder(),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Color(0xffffb100)),
+              ),
+              filled: false,
+              icon: Icon(Icons.person, color: Color(0xffffb100)),
+              hintText: 'Username',
+            ),
           ),
         ),
-        TextFormField(
-          textCapitalization: TextCapitalization.words,
-          decoration: InputDecoration(
-            border: UnderlineInputBorder(),
-            filled: false,
-            icon: Icon(Icons.email),
-            hintText: 'Email',
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextFormField(
+            textCapitalization: TextCapitalization.words,
+            decoration: InputDecoration(
+              border: UnderlineInputBorder(),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Color(0xffffb100)),
+              ),
+              filled: false,
+              icon: Icon(Icons.email, color: Color(0xffffb100)),
+              hintText: 'Email',
+            ),
+            textAlign: TextAlign.left,
           ),
-          textAlign: TextAlign.left,
         ),
-        TextFormField(
-          textCapitalization: TextCapitalization.words,
-          decoration: InputDecoration(
-            border: UnderlineInputBorder(),
-            filled: false,
-            icon: Icon(Icons.lock),
-            hintText: 'Password',
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextFormField(
+            textCapitalization: TextCapitalization.words,
+            decoration: InputDecoration(
+              border: UnderlineInputBorder(),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Color(0xffffb100)),
+              ),
+              filled: false,
+              icon: Icon(Icons.lock, color: Color(0xffffb100)),
+              hintText: 'Password',
+            ),
+            textAlign: TextAlign.left,
           ),
-          textAlign: TextAlign.left,
         ),
-        TextFormField(
-          textCapitalization: TextCapitalization.words,
-          decoration: InputDecoration(
-            border: UnderlineInputBorder(),
-            filled: false,
-            icon: Icon(Icons.lock),
-            hintText: 'Confirm Password',
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextFormField(
+            textCapitalization: TextCapitalization.words,
+            decoration: InputDecoration(
+              border: UnderlineInputBorder(),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Color(0xffffb100)),
+              ),
+              filled: false,
+              icon: Icon(Icons.lock, color: Color(0xffffb100)),
+              hintText: 'Confirm Password',
+            ),
+            textAlign: TextAlign.left,
           ),
-          textAlign: TextAlign.left,
         ),
         Container(
           child: SelectGender(),
@@ -97,7 +122,7 @@ class Signup extends StatelessWidget {
           children: <Widget>[
             CheckBoxClass(),
             Text(
-              'By creating your account, your are agree\nto our terms of use & privacy policy ',
+              'By creating your account, you agree\nto our terms of use & privacy policy ',
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: 10,
@@ -139,10 +164,6 @@ class Signup extends StatelessWidget {
         ),
       ],
     ));
-//        ],
-//      ),
-
-//    );
   }
 
   void _openLoginScreen(BuildContext context) {
@@ -200,6 +221,7 @@ class _SelectGender extends State<StatefulWidget> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return ListTile(
+      leading: Icon(Icons.person, color: Color(0xffffb100)),
       trailing: DropdownButton<String>(
         value: _selectedGender,
         hint: Container(

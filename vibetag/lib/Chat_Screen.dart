@@ -117,56 +117,79 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
                           SizedBox(
                             width: 10,
                           ),
-                          SizedBox(
-                            width: 175,
-                            child: Container(
-                              alignment: Alignment.center,
-                              child: TextField(
-                                style: TextStyle(
-                                  fontFamily: 'Helvetica Neue',
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                ),
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hoverColor: Colors.yellow,
-                                  hintText: 'Write your message here',
-                                  hintStyle: TextStyle(
+                          Padding(
+                            padding: const EdgeInsets.only(left:5.0, right: 5.0),
+                            child: SizedBox(
+                              width: 215,
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: TextFormField(
+                                  style: TextStyle(
+                                    fontFamily: 'Helvetica Neue',
                                     fontSize: 14,
-                                    color: const Color(0xffa0a0a0),
+                                    color: Colors.black,
                                   ),
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hoverColor: Colors.yellow,
+                                    hintText: 'Write your message here',
+                                    hintStyle: TextStyle(
+                                      fontSize: 14,
+                                      color: const Color(0xffa0a0a0),
+                                    ),
+                                    suffixIcon: IconButton(
+                                      icon: Icon(
+                                        Icons.insert_emoticon,
+                                        size: 19,
+                                      ),
+                                      color: Color(0xFFF69222),
+                                      onPressed: () {
+                                        print('a');
+                                        EmojiPicker(
+                                          rows: 3,
+                                          columns: 7,
+                                          buttonMode: ButtonMode.CUPERTINO,
+                                          recommendKeywords: ["racing", "horse"],
+                                          numRecommended: 10,
+                                          onEmojiSelected: (emoji, category) {
+                                            print(emoji);
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  maxLines: null,
+                                  keyboardType: TextInputType.text,
                                 ),
-                                maxLines: null,
-                                keyboardType: TextInputType.text,
                               ),
                             ),
                           ),
-                          Container(
-                            padding: EdgeInsets.all(0),
-                            color: Color(0xfff7f7f7),
-                            margin: EdgeInsets.fromLTRB(0, 0, 4, 3),
-                            width: 30.0,
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.insert_emoticon,
-                                size: 19,
-                              ),
-                              color: Color(0xFFF69222),
-                              onPressed: () {
-                                print('a');
-                                EmojiPicker(
-                                  rows: 3,
-                                  columns: 7,
-                                  buttonMode: ButtonMode.CUPERTINO,
-                                  recommendKeywords: ["racing","horse"],
-                                  numRecommended: 10,
-                                  onEmojiSelected: (emoji,category){
-                                    print(emoji);
-                                  },
-                                );
-                              },
-                            ),
-                          ),
+                          // Container(
+                          //   padding: EdgeInsets.all(0),
+                          //   color: Color(0xfff7f7f7),
+                          //   margin: EdgeInsets.fromLTRB(0, 0, 4, 3),
+                          //   width: 30.0,
+                          //   child: IconButton(
+                          //     icon: Icon(
+                          //       Icons.insert_emoticon,
+                          //       size: 19,
+                          //     ),
+                          //     color: Color(0xFFF69222),
+                          //     onPressed: () {
+                          //       print('a');
+                          //       EmojiPicker(
+                          //         rows: 3,
+                          //         columns: 7,
+                          //         buttonMode: ButtonMode.CUPERTINO,
+                          //         recommendKeywords: ["racing", "horse"],
+                          //         numRecommended: 10,
+                          //         onEmojiSelected: (emoji, category) {
+                          //           print(emoji);
+                          //         },
+                          //       );
+                          //     },
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -252,7 +275,7 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
             ),
           ],
         ),
-        resizeToAvoidBottomPadding: false,
+        // resizeToAvoidBottomPadding: false,
         backgroundColor: const Color(0xffffffff),
         body: SafeArea(
           child: Column(
@@ -331,86 +354,22 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
                         ],
                       ),
                     ),
-                    Row(
+                    Column(
                       children: <Widget>[
-                        SizedBox(
-                          width: 15,
+                        _buildMessageRow(
+                          'images/man_pic.jpg',
+                          'Hello!',
+                          isSentByMe: false,
                         ),
-                        ClipRRect(
-                            borderRadius: BorderRadius.circular(3.0),
-                            child: Image.asset('images/man_pic.jpg')),
-                        SizedBox(
-                          width: 15,
+                        _buildMessageRow(
+                          'images/man_2.jpg',
+                          'Hello!',
+                          isSentByMe: true,
                         ),
-                        Container(
-                          constraints: BoxConstraints(
-                              minWidth: 75, maxWidth: widthD - 175),
-                          padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
-                          margin: EdgeInsets.symmetric(vertical: 10),
-                          decoration: BoxDecoration(
-                            color: Color(0xfff5f5f5),
-                            borderRadius: BorderRadius.circular(15.0),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                              ),
-                            ],
-                          ),
-                          child: Text(
-                            'Hello!',
-                            maxLines: null,
-                            overflow: TextOverflow.clip,
-                            textAlign: TextAlign.justify,
-                            style: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontSize: 15,
-                              color: const Color(0xff707070),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Container(
-                          constraints: BoxConstraints(
-                              minWidth: 100, maxWidth: widthD - 175),
-                          padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
-                          margin: EdgeInsets.symmetric(vertical: 10),
-                          decoration: BoxDecoration(
-                            color: Color(0xffF39524),
-                            borderRadius: BorderRadius.circular(15.0),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                              ),
-                            ],
-                          ),
-                          child: Text(
-                            'Hello!',
-                            maxLines: null,
-                            overflow: TextOverflow.clip,
-                            textAlign: TextAlign.justify,
-                            style: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontSize: 15,
-                              color: const Color(0xffffffff),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        ClipRRect(
-                            borderRadius: BorderRadius.circular(3.0),
-                            child: Image.asset('images/man_pic.jpg')),
-                        SizedBox(
-                          width: 15,
+                        _buildMessageRow(
+                          'images/man_pic.jpg',
+                          'Here\'s 10% off as a thank-you for jumping on board here',
+                          isSentByMe: false,
                         ),
                       ],
                     )
@@ -425,4 +384,43 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
 
 void _navigateToBackScreen(BuildContext context) {
   Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyApp()));
+}
+
+Widget _buildMessageRow(String imagePath, String message, {bool isSentByMe}) {
+  return Container(
+    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+    child: Row(
+      mainAxisAlignment:
+          isSentByMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+      children: <Widget>[
+        if (!isSentByMe)
+          CircleAvatar(
+            backgroundImage: AssetImage(imagePath),
+            radius: 20,
+          ),
+        SizedBox(width: 10),
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          constraints: BoxConstraints(maxWidth: 250),
+          decoration: BoxDecoration(
+            color: isSentByMe ? Colors.orange[100] : Colors.grey[200],
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Text(
+            message,
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        if (isSentByMe) SizedBox(width: 10),
+        if (isSentByMe)
+          CircleAvatar(
+            backgroundImage: AssetImage(imagePath),
+            radius: 20,
+          ),
+      ],
+    ),
+  );
 }

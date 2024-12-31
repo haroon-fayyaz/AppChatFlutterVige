@@ -23,11 +23,27 @@ class ChatListPage extends StatefulWidget {
 class _ChatListPageState extends State<ChatListPage> {
   MediaQueryData queryData;
 
-  static List<String> Names = [
-    'Professor',
-    'Nairobi',
-    'Tokyo',
-    'Berlin',
+  static List<Map<String, String>> chatData = [
+    {
+      'name': 'Professor',
+      'image': 'images/person.jpg',
+      'message': 'Hey there! How are you',
+    },
+    {
+      'name': 'Nairobi',
+      'image': 'images/person_3.jpg',
+      'message': 'Hi! How are you',
+    },
+    {
+      'name': 'Tokyo',
+      'image': 'images/person_5.jpg',
+      'message': 'Thank you!',
+    },
+    {
+      'name': 'Berlin',
+      'image': 'images/person_7.jpg',
+      'message': 'Bye!',
+    },
   ];
 
   @override
@@ -55,9 +71,13 @@ class _ChatListPageState extends State<ChatListPage> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3.0),
                     border: Border.all(color: Colors.grey[300])),
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(3.0),
-                    child: Image.asset('images/man_pic.jpg')),
+                child: ClipOval(
+                    child: Image.asset(
+                  'images/person_2.jpg',
+                  width: 35.0,
+                  height: 35.0,
+                  fit: BoxFit.cover,
+                )),
               ),
             ),
             Container(
@@ -66,7 +86,7 @@ class _ChatListPageState extends State<ChatListPage> {
                 'Chats',
                 style: TextStyle(
                   fontFamily: 'Helvetica Neue',
-                  fontSize: 14,
+                  fontSize: 16,
                   color: const Color(0xff707070),
                   fontWeight: FontWeight.w700,
                 ),
@@ -87,17 +107,16 @@ class _ChatListPageState extends State<ChatListPage> {
           ),
         ],
       ),
-      resizeToAvoidBottomPadding: false,
+      // resizeToAvoidBottomPadding: false,
       backgroundColor: const Color(0xffffffff),
       body: Column(
         children: <Widget>[
           Container(
             child: Row(
-
               children: <Widget>[
                 Icon(
                   Icons.search,
-                  color: Colors.blue,
+                  color: Color(0xfffe7e45),
                 ),
                 SizedBox(
                   width: 15,
@@ -110,14 +129,14 @@ class _ChatListPageState extends State<ChatListPage> {
                       maxLines: null,
                       style: TextStyle(
                         fontFamily: 'Helvetica Neue',
-                        fontSize: 18,
+                        fontSize: 16,
                         color: Colors.black,
                       ),
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Search',
                         hintStyle: TextStyle(
-                          fontSize: 20.0,
+                          fontSize: 16.0,
                           color: const Color(0xffa0a0a0),
                         ),
                       ),
@@ -141,18 +160,22 @@ class _ChatListPageState extends State<ChatListPage> {
             child: ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
-              itemCount: Names.length,
+              itemCount: chatData.length,
               itemBuilder: (context, index) {
-                var title = Names.elementAt(index);
+                var person = chatData.elementAt(index);
                 return Card(
                   child: ListTile(
                     title: Row(
                       children: <Widget>[
                         GestureDetector(
                           child: Container(
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(3.0),
-                                child: Image.asset('images/man_pic.jpg')),
+                            child: ClipOval(
+                                child: Image.asset(
+                              person['image'],
+                              width: 40.0,
+                              height: 40.0,
+                              fit: BoxFit.cover,
+                            )),
                           ),
                         ),
                         SizedBox(
@@ -161,27 +184,27 @@ class _ChatListPageState extends State<ChatListPage> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
+                            children: <Widget>[
                             /*Name*/
                             Text(
-                              title,
+                              person['name'],
                               style: TextStyle(
-                                fontFamily: 'Roboto',
-                                fontSize: 16,
-                                color: const Color(0xff727272),
-                                fontWeight: FontWeight.w700,
+                              fontFamily: 'Roboto',
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
                               ),
                               textAlign: TextAlign.left,
                             ),
 
                             /*Status*/
                             Text(
-                              'Hey there! How are you',
+                              person['message'],
                               style: TextStyle(
-                                fontFamily: 'Roboto',
-                                fontSize: 14,
-                                color: const Color(0xff727272),
-                                fontWeight: FontWeight.w700,
+                              fontFamily: 'Roboto',
+                              fontSize: 14,
+                              color: const Color(0xff727272),
+                              fontWeight: FontWeight.w700,
                               ),
                               textAlign: TextAlign.left,
                             ),

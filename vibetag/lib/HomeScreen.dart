@@ -76,7 +76,7 @@ class _HomeScreenListState extends State<HomeScreenList>
     var widthD = screenSize.width;
     var heightD = screenSize.height;
     return new Scaffold(
-        resizeToAvoidBottomPadding: false,
+        // resizeToAvoidBottomPadding: false,
         backgroundColor: const Color(0xffffffff),
         appBar: AppBar(
           backgroundColor: Color(0xfffffffc),

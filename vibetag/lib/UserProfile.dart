@@ -60,7 +60,7 @@ class _UserProfileState extends State<UserProfile> {
     var widthD = screenSize.width;
     var heightD = screenSize.height;
     return new Scaffold(
-      resizeToAvoidBottomPadding: false,
+      // resizeToAvoidBottomPadding: false,
       backgroundColor: const Color(0xffffffff),
       body: SafeArea(
         child: Stack(

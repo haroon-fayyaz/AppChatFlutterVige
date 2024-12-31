@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:async/async.dart';
 
-class _SetupProfile extends StatelessWidget {
+class SetupProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -35,7 +35,7 @@ class SetupProfile extends State<SetupProfileState> {
   Widget build(BuildContext context) {
     _genderController.text = 'Please Select a Gender';
     return new Scaffold(
-      resizeToAvoidBottomPadding: false,
+      // resizeToAvoidBottomPadding: false,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         physics: NeverScrollableScrollPhysics(),

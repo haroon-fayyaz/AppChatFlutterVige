@@ -77,7 +77,7 @@ class _FriendListState extends State<FriendList> {
         ),
         automaticallyImplyLeading: true,
       ),
-      resizeToAvoidBottomPadding: false,
+      // resizeToAvoidBottomPadding: false,
       backgroundColor: const Color(0xffffffff),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -144,9 +144,12 @@ class _FriendListState extends State<FriendList> {
                 Container(
                   child: Row(
                     children: <Widget>[
-                      Icon(
-                        Icons.search,
-                        color: Colors.blue,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.blue,
+                        ),
                       ),
                       SizedBox(
                         width: 15,
@@ -154,18 +157,20 @@ class _FriendListState extends State<FriendList> {
                       SizedBox(
                         width: 250,
                         child: Container(
-                          alignment: Alignment.center,
+                          alignment: Alignment.centerLeft,
                           child: TextField(
                             style: TextStyle(
                               fontFamily: 'Helvetica Neue',
                               fontSize: 18,
                               color: Colors.black,
                             ),
+                            textAlign: TextAlign.start,
                             decoration: InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(vertical: 10.0),
                               border: InputBorder.none,
                               hintText: 'Search',
                               hintStyle: TextStyle(
-                                fontSize: 20.0,
+                                fontSize: 16.0,
                                 color: const Color(0xffa0a0a0),
                               ),
                             ),

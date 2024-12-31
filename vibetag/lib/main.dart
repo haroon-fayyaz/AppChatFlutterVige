@@ -28,7 +28,7 @@ class _homePageState extends State<homePage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      resizeToAvoidBottomPadding: false,
+      // resizeToAvoidBottomPadding: false,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
